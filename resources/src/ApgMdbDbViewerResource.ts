@@ -9,17 +9,20 @@ import { Drash, Tng } from "../../deps.ts";
 
 export class ApgMdbDbViewerResource extends Drash.Resource {
 
-    public override paths = ["/svg/viewer/:test"];
+    public override paths = ["/db/viewer/:dbName"];
 
     public async GET(request: Drash.Request, response: Drash.Response) {
+
+        const rawDbName = request.pathParam("dbName");
+
 
         const templateData = {
             site: { 
                 name: "Apg-Mdb",
-                title: "Apg Database collections"
+                title: "Apg " + rawDbName + " database collections"
             },
             page: {
-                title: "Viewer",
+                title: rawDbName + " collections",
                 toolbar: "",
                 released: "2023/01/09"
             },
